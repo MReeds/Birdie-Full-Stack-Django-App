@@ -1,16 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from .disc_type import Disc_Type
 from django.contrib.auth.models import User
 from django.utils.translation import gettext
 
 class Disc(models.Model):
-    
-    class Disc_Type(models.TextChoices):
-        DRIVER =  gettext('Driver')
-        MIDRANGE = gettext('Mid-Range')
-        PUTTER = gettext('Putter')
         
-    disc_type = models.CharField(choices=Disc_Type.choices, null=False, max_length=20)
+    disc_type = models.ForeignKey(Disc_Type, null=False, on_delete=models.DO_NOTHING)
     color = models.CharField(max_length=20, null=True)
     speed = models.IntegerField(null=True)
     glide = models.IntegerField(null=True)

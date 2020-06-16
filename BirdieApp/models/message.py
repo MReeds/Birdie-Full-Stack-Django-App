@@ -3,9 +3,9 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 class Message(models.Model):
-    creator_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    recipient_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField()
+    creator_id = models.ForeignKey(User, on_delete=models.SET_NULL)
+    recipient_id = models.ForeignKey(User, on_delete=models.SET_NULL)
+    content = models.CharField(null=False)
     created_at = models.DateTimeField(auto_now=True)
     expiration_date = models.DateTimeField()
     

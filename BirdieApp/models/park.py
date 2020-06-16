@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-class Park(models.model):
+class Park(models.Model):
     title = models.CharField(max_length=60)
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=15)

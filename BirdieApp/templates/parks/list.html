@@ -1,0 +1,16 @@
+{% extends 'birdie_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Parks</h1>
+
+    <ol class="parks">
+    {% for park in all_parks %}
+        <li class="park">
+            <div>
+                {{ park.title }} in {{park.city}}, {{ park.state }} 
+            </div>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}

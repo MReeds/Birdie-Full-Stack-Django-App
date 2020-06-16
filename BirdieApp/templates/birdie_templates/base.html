@@ -25,6 +25,24 @@
             {% endif %}
         </ul> 
     </div>
+    <div>
+        {% if user.is_authenticated %}
+        <ul class="main-nav-item">
+            <li class="nav-link">
+                <a class="nav-link" href="{% url 'BirdieApp:parks' %}">Parks</a>
+            </li>
+            <li class="nav-link">
+                <a class="nav-link" href="{% url 'BirdieApp:bags' %}">Bags</a>
+            </li>
+            <li class="nav-link">
+                <a class="nav-link" href="{% url 'BirdieApp:messages' %}">Messages</a>
+            </li>
+            <li class="nav-link">
+                <a class="nav-link" href="{% url 'BirdieApp:account' %}">Account</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
     <main role="main" class="container">
         <div class="pb-2 mb-2 border-bottom">
             {% block page_header %} {% endblock page_header %}

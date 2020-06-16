@@ -3,9 +3,9 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 class Message(models.Model):
-    creator_id = models.ForeignKey(User, on_delete=models.SET_NULL)
-    recipient_id = models.ForeignKey(User, on_delete=models.SET_NULL)
-    content = models.CharField(null=False)
+    creator_id = models.ForeignKey(User, related_name='sender', on_delete=models.PROTECT)
+    recipient_id = models.ForeignKey(User, related_name='reciever' ,on_delete=models.PROTECT)
+    content = models.CharField(null=False, max_length=150)
     created_at = models.DateTimeField(auto_now=True)
     expiration_date = models.DateTimeField()
     
@@ -15,3 +15,12 @@ class Message(models.Model):
         
     def __str__(self):
         return self.content
+    
+# Create a form for this model, use model form .
+
+# filter "Inbox" queries in views.py by
+
+# Message.objects.filter(reciever=request.user)
+# filter "Sent Box" queries in views.py by
+
+# Message.objects.filter(sender = request.user)

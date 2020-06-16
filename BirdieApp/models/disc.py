@@ -10,7 +10,7 @@ class Disc(models.Model):
         MIDRANGE = gettext('Mid-Range')
         PUTTER = gettext('Putter')
         
-    disc_type = models.CharField(choices=Disc_Type.choices, null=False)
+    disc_type = models.CharField(choices=Disc_Type.choices, null=False, max_length=20)
     color = models.CharField(max_length=20, null=True)
     speed = models.IntegerField(null=True)
     glide = models.IntegerField(null=True)

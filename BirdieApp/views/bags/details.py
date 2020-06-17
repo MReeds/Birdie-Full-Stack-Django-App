@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from ..connection import Connection
 from BirdieApp.models.model_factory import model_factory
+from BirdieApp.models import Bag
 
 def get_bag(bag_id):
     with sqlite3.connect(Connection.db_path) as conn:
@@ -12,9 +13,10 @@ def get_bag(bag_id):
         
         db_cursor.execute("""
         SELECT
-            b.id bag_id,
+            b.id AS bag_id,
             b.brand
-        FROM BirdieApp_bag
+        FROM BirdieApp_bag b
+        WHERE b.id = ?
         """, (bag_id,))
         
         return db_cursor.fetchone()

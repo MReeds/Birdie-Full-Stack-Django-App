@@ -8,9 +8,7 @@
 <ul class="bags">
     {% for bag in all_bags %}
         <li class="bags">
-            <div>
-                {{ bag.brand }} 
-            </div>
+            <a href="{% url 'BirdieApp:bag' bag.id %}">{{ bag.brand}}</a>
         </li>
     {% endfor %}
     </ul>

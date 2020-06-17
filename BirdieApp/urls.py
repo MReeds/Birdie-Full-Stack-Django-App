@@ -9,4 +9,5 @@ urlpatterns = [
     path('park/form', park_form, name="park_form"),
     path('bags/', bag_list, name="bags"),
     path('bags/<int:bag_id>/', bag_details, name="bag"),
+    path('discs/', disc_list, name="discs"),
 ]

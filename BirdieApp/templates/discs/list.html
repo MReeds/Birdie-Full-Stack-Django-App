@@ -1,0 +1,17 @@
+{% extends 'birdie_templates/base.html' %}
+{% load static %}
+<h1>Your discs</h1>
+
+<ol class="discs">
+    {% for disc in all_discs %}
+        <li class="disc">
+            <div>
+               {{ disc.disc_type }} 
+            </div>
+        </li>
+    {% endfor %}
+    </ol>
+
+{% block content %}
+
+{% endblock %}

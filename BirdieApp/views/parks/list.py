@@ -28,3 +28,19 @@ def park_list(request):
         }
         
         return render(request, template, context)
+    
+    elif request.method == 'POST':
+        form_data = request.POST
+        
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+            
+            db_cursor.execute("""
+            INSERT INTO BirdieApp_park
+                (title, city, state)
+            VALUES
+                (?, ?, ?)
+            """,
+            (form_data['title'], form_data['city'], form_data['state']))
+            
+        return redirect(reverse('BirdieApp:parks'))

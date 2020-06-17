@@ -1,11 +1,8 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
-from .disc import Disc
-
 
 class Bag(models.Model):
-    disc = models.ForeignKey(Disc, on_delete=models.PROTECT)
+    brand = models.CharField(null=True, max_length=25)
     
     class Meta:
         verbose_name = ('bag')

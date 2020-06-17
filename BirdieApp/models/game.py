@@ -4,8 +4,8 @@ from .park import Park
 from .bag import Bag
 
 class Game(models.Model):
-    park = models.ForeignKey(Park, on_delete=models.PROTECT)
-    bag = models.ForeignKey(Bag, on_delete=models.PROTECT)
+    park = models.ForeignKey(Park, on_delete=models.DO_NOTHING)
+    bag = models.ForeignKey(Bag, on_delete=models.DO_NOTHING)
     score = models.IntegerField(null=True)
     started_at = models.DateTimeField(auto_now=True)
     

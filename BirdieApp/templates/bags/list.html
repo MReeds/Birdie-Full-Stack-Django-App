@@ -1,0 +1,15 @@
+{% extends 'birdie_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Your bags</h1>
+
+<ul class="bags">
+    {% for bag in all_bags %}
+        <li class="bags">
+            <a href="{% url 'BirdieApp:bag' bag.id %}">{{ bag.brand}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

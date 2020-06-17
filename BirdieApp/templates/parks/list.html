@@ -1,10 +1,10 @@
-{% extends 'birdie_templates/base.html' %}
-{% load static %}
+    {% extends 'birdie_templates/base.html' %}
+    {% load static %}
 
-{% block content %}
+    {% block content %}
     <h1>Parks</h1>
 
-    <ol class="parks">
+    <ul class="parks">
     {% for park in all_parks %}
         <li class="park">
             <div>
@@ -12,7 +12,7 @@
             </div>
         </li>
     {% endfor %}
-    </ol>
+    </ul>
     <form action="{% url 'BirdieApp:park_form'%}" method="GET">
         {% csrf_token %}
         <button>Add a Park</button>

@@ -1,0 +1,17 @@
+{% extends 'birdie_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Your bags</h1>
+
+<ul class="bags">
+    {% for bag in all_bags %}
+        <li class="bags">
+            <div>
+                {{ bag.brand }} 
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

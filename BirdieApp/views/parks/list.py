@@ -41,6 +41,6 @@ def park_list(request):
             VALUES
                 (?, ?, ?)
             """,
-            (form_data['title'], form_data['city'], form_data['state']))
+            (form_data['title'], form_data['city'], form_data['state'],))
             
         return redirect(reverse('BirdieApp:parks'))

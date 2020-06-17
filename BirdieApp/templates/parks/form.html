@@ -4,6 +4,7 @@
     <h1>Create a Park</h1>
 
     <form action="{% url 'BirdieApp:parks' %}" method="post">
+        {% csrf_token %}
         <fieldset>
             <label for="title">Title: </label>
             <input id="title" type="text" name="title" value="{{ park.title }}">

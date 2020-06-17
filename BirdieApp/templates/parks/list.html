@@ -13,4 +13,7 @@
         </li>
     {% endfor %}
     </ol>
+    <form action="{% url 'BirdieApp:park_form'%}" method="GET">
+        {% csrf_token %}
+        <button>Add a Park</button>
 {% endblock %}

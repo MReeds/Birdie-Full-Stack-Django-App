@@ -1,12 +1,13 @@
 from django.db import models
 from django.urls import reverse
-from .disc_type import Disc_Type
+from .bag import Bag
 from django.contrib.auth.models import User
 from django.utils.translation import gettext
 
 class Disc(models.Model):
         
-    disc_type = models.ForeignKey(Disc_Type, null=False, on_delete=models.DO_NOTHING)
+    disc_type = models.CharField(null=False, max_length=15)
+    bag = models.ForeignKey(Bag, null=True, on_delete=models.DO_NOTHING)
     color = models.CharField(max_length=20, null=True)
     speed = models.IntegerField(null=True)
     glide = models.IntegerField(null=True)

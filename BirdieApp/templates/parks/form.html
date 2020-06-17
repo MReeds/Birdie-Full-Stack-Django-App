@@ -1,0 +1,22 @@
+{% extends 'birdie_templates/base.html' %}
+
+{% block content %}
+    <h1>Create a Park</h1>
+
+    <form action="{% url 'BirdieApp:parks' %}" method="post">
+        <fieldset>
+            <label for="title">Title: </label>
+            <input id="title" type="text" name="title" value="{{ park.title }}">
+        </fieldset>
+        <fieldset>
+            <label for="city">City: </label>
+            <input id="city" type="text" name="city" value="{{ park.city }}">
+        </fieldset>
+        <fieldset>
+            <label for="state">State: </label>
+            <input id="state" type="text" name="state" value="{{ park.state }}">
+        </fieldset>
+        <input type="submit" value="Submit" />
+    </form>
+
+{% endblock %}

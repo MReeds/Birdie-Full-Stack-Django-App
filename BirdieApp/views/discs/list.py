@@ -34,3 +34,21 @@ def disc_list(request):
         }
         
         return render(request, template, context)
+    
+    elif request.method == 'POST':
+        form_data = request.POST
+        
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+            
+            db_cursor.execute("""
+            INSERT INTO BirdieApp_disc
+                (brand, name, disc_type, color, speed, glide, turn, fade)
+            VALUES
+                (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (form_data['brand'], form_data['name'], form_data['disc_type'],
+             form_data['color'], form_data['speed'], form_data['glide'],
+             form_data['turn'], form_data['fade']))
+            
+        return redirect(reverse('BirdieApp:discs'))

@@ -13,5 +13,8 @@
     {% endfor %}
     </ol>
 
+    <form action="{% url 'BirdieApp:disc_form'%}" method="GET">
+        {% csrf_token %}
+            <button>Save a new disc</button>
 
 {% endblock %}

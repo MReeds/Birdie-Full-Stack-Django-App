@@ -1,6 +1,7 @@
 import sqlite3
 from django.shortcuts import render, redirect, reverse
 from BirdieApp.models import model_factory, Disc
+from ..connection import Connection
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -13,13 +14,15 @@ def disc_list(request):
             db_cursor.execute("""
                 SELECT
                     d.id,
+                    d.name,
                     d.disc_type,
-                    d.bag,
+                    d.bag_id,
                     d.color,
                     d.speed,
                     d.glide,
                     d.turn,
-                    d.fade
+                    d.fade,
+                    d.brand
                 FROM BirdieApp_disc d
                 """)
             

@@ -1,8 +1,8 @@
 {% extends 'birdie_templates/base.html' %}
 
 {% block content %}
+<input type=button value="Back" onClick="javascript:history.go(-1);">
     <h1>Create a new bag</h1>
-
     <form action="{% url 'BirdieApp:bags' %}" method="post">
         {% csrf_token %}
         <fieldset>

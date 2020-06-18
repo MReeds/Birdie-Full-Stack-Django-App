@@ -39,19 +39,24 @@ def disc_details(request, disc_id):
         }
         
         return render(request, template, context)
+    
+    if request.method == 'POST':
+        form_data = request.POST
 
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "DELETE"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
 
-# @login_required
-# def book_details(request, book_id):
-#     if request.method == 'GET':
-#         book = get_book(book_id)
+                db_cursor.execute("""
+                DELETE FROM BirdieApp_disc
+                WHERE id = ?
+                """, (disc_id,))
 
-#         template = 'books/details.html'
-#         context = {
-#             'book': book
-#         }
+            return redirect(reverse('BirdieApp:discs'))
 
-#         return render(request, template, context)
       
 #     if request.method == 'POST':
 #         form_data = request.POST

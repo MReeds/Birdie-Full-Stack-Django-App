@@ -7,4 +7,10 @@
         <h3>by {{ disc.brand }}</h3>
         <div>{{ disc.name }} has a flight rating of <strong>{{ disc.speed }} | {{ disc.glide }} | {{ disc.turn }} | {{ disc.fade }}</strong></div>
     </section>
+
+    <form action="{% url 'BirdieApp:disc' disc.disc_id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        <button>Delete</button>
+    </form>
 {% endblock %}

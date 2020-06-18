@@ -26,3 +26,19 @@ def bag_list(request):
         }
         
         return render(request, template, context)
+    
+    elif request.method == 'POST':
+        form_data = request.POST
+        
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+            
+            db_cursor.execute("""
+            INSERT INTO BirdieApp_bag
+                (brand)
+            VALUES
+                (?)
+            """,
+            (form_data['brand'],))
+            
+        return redirect(reverse('BirdieApp:bags'))

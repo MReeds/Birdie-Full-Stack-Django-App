@@ -6,6 +6,8 @@ from django.utils.translation import gettext
 
 class Disc(models.Model):
         
+    brand = models.CharField(null=True, max_length=20)
+    name = models.CharField(null=True, max_length=20)
     disc_type = models.CharField(null=False, max_length=15)
     bag = models.ForeignKey(Bag, null=True, on_delete=models.DO_NOTHING)
     color = models.CharField(max_length=20, null=True)

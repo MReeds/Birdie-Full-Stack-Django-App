@@ -1,0 +1,56 @@
+{% extends 'birdie_templates/base.html' %}
+
+{% block content %}
+    <h1>Save a new disc</h1>
+
+    <form action="{% url 'BirdieApp:discs' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <label for="brand">Brand: </label>
+            <input id="brand" type="text" name="brand" value="{{ disc.brand }}">
+        </fieldset>
+        <fieldset>
+            <label for="name">Name: </label>
+            <input id="name" type="text" name="name" value="{{ disc.name }}">
+        </fieldset>
+        <!-- <fieldset>
+            <label for="disc_type">Type: </label>
+            <select id="disc_type" value="{{ disc.disc_type }}">
+                <option value="None" selected>Select</option>
+                <option value="driver">Driver</option>
+                <option value="mid-range">Mid-Range</option>
+                <option value="putter">Putter</option>
+            </select>
+        </fieldset> -->
+        <fieldset>
+            <label for="disc_type">Type: </label>
+            <select id="disc_type" name="disc_type">
+                {% for type in types %}
+                    <option value="{{ type }}">{{ type }}</option>
+                {% endfor %}
+            </select>
+        </fieldset>
+        <fieldset>
+            <label for="color">Color: </label>
+            <input id="color" type="text" name="color" value="{{ disc.color }}">
+        </fieldset>
+        <fieldset>
+            <label for="speed">Speed: </label>
+            <input id="speed" type="number" name="speed" value="{{ disc.speed }}">
+        </fieldset>
+        <fieldset>
+            <label for="glide">Glide: </label>
+            <input id="glide" type="number" name="glide" value="{{ disc.glide }}">
+        </fieldset>
+        <fieldset>
+            <label for="turn">Turn: </label>
+            <input id="turn" type="number" name="turn" value="{{ disc.turn }}">
+        </fieldset>
+        <fieldset>
+            <label for="fade">Fade: </label>
+            <input id="fade" type="number" name="fade" value="{{ disc.fade }}">
+        </fieldset>
+        <input type="submit" value="Submit" />
+    </form>
+
+{% endblock %}

@@ -3,15 +3,16 @@
 {% block content %}
 <h1>Your discs</h1>
 
-<ol class="discs">
+<ul class="discs">
     {% for disc in all_discs %}
         <li class="disc">
+            <a class="disc_name" href="{% url 'BirdieApp:disc' disc.id %}">{{ disc.name }}</a>
             <div>
-               {{ disc.brand }} {{ disc.name }} - {{ disc.disc_type }} 
+               {{ disc.brand }} - {{ disc.disc_type }} 
             </div>
         </li>
     {% endfor %}
-    </ol>
+    </ul>
 
     <form action="{% url 'BirdieApp:disc_form'%}" method="GET">
         {% csrf_token %}

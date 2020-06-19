@@ -14,6 +14,7 @@ def get_disc(disc_id):
         db_cursor.execute("""
         SELECT
             d.id AS disc_id,
+            d.bag_id,
             d.brand,
             d.name, 
             d.color,

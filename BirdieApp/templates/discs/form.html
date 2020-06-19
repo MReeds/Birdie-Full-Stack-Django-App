@@ -2,7 +2,9 @@
 
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
+
     <h1>Save a new disc</h1>
+    <h1>{{disc.disc_type}}</h1>
     
     {% if disc.disc_id is not None %}
         <form action="{% url 'BirdieApp:disc' disc.disc_id %}" method="post">
@@ -11,6 +13,7 @@
         <form action="{% url 'BirdieApp:discs' %}" method="post">
     {% endif %}
         {% csrf_token %}
+        
         <fieldset>
             <label for="bag">Bag: </label>
             <select id="bag" name="bag_id">
@@ -31,7 +34,7 @@
             <label for="disc_type">Type: </label>
             <select id="disc_type" name="disc_type">
                 {% for type in types %}
-                    <option {% if disc.disc_type %}selected{% endif %} value="{{ type }}">{{ type }}</option>
+                    <option {% if disc.disc_type %}selected{% endif %}>{{ type }}</option>
                 {% endfor %}
             </select>
         </fieldset>

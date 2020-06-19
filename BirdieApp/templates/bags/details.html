@@ -3,5 +3,21 @@
 
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
-<h1>Write loop to get disc details</h1>
+<ul class="discs">
+    {% for disc in discs %}
+        {% if disc.bag_id == bag.bag_id %}
+            <li class="disc">
+                <a class="disc_name" href="{% url 'BirdieApp:disc' disc.id %}">{{ disc.name }}</a>
+                <div>
+                {{ disc.brand }} - {{ disc.disc_type }} 
+                </div>
+            </li>
+        {% else %}
+            <div></div>
+        {% endif %}
+    {% endfor %}
+    </ul>
+<form action="{% url 'BirdieApp:discs'%}" method="GET">
+    {% csrf_token %}
+        <button>Fill your bag</button>
 {% endblock %}

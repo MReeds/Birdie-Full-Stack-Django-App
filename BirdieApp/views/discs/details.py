@@ -14,8 +14,10 @@ def get_disc(disc_id):
         db_cursor.execute("""
         SELECT
             d.id AS disc_id,
+            d.bag_id,
             d.brand,
-            d.name,
+            d.name, 
+            d.color,
             d.disc_type,
             d.color,
             d.speed,
@@ -54,6 +56,36 @@ def disc_details(request, disc_id):
                 DELETE FROM BirdieApp_disc
                 WHERE id = ?
                 """, (disc_id,))
+
+            return redirect(reverse('BirdieApp:discs'))
+        
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "PUT"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
+
+                db_cursor.execute("""
+                UPDATE BirdieApp_disc
+                SET bag_id = ?,
+                    brand = ?,
+                    name = ?,
+                    disc_type = ?,
+                    color = ?,
+                    speed = ?,
+                    glide = ?,
+                    turn = ?,
+                    fade = ?
+                WHERE id = ?
+                """,
+                (
+                    form_data['bag_id'], form_data['brand'],
+                    form_data['name'], form_data['disc_type'],
+                    form_data['color'], form_data['speed'],
+                    form_data['glide'], form_data['turn'], 
+                    form_data['fade'],  disc_id,
+                ))
 
             return redirect(reverse('BirdieApp:discs'))
 

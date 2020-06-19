@@ -13,4 +13,5 @@ urlpatterns = [
     path('discs/', disc_list, name="discs"),
     path('disc/form/', disc_form, name='disc_form'),
     path('discs/<int:disc_id>/', disc_details, name='disc'),
+    path('discs/<int:disc_id>/form/', disc_edit_form, name="disc_edit_form"),
 ]

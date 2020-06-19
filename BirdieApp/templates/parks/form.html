@@ -1,10 +1,22 @@
 {% extends 'birdie_templates/base.html' %}
 
 {% block content %}
-    <h1>Create a Park</h1>
+<input type=button value="Back" onClick="javascript:history.go(-1);">
 
-    <form action="{% url 'BirdieApp:parks' %}" method="post">
+    {% if park.park_id is not None %}
+    <h1>Edit</h1>
+    {% else %}
+    <h1>Create a Park</h1>
+    {% endif %}
+
+    {% if park.park_id is not None %}
+        <form action="{% url 'BirdieApp:park' park.park_id %}" method="post">
+        <input type="hidden" name="actual_method" value="PUT">
+    {% else %}
+        <form action="{% url 'BirdieApp:parks' %}" method="post">
+    {% endif %}
         {% csrf_token %}
+
         <fieldset>
             <label for="title">Title: </label>
             <input id="title" type="text" name="title" value="{{ park.title }}">

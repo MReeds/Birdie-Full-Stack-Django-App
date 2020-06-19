@@ -8,7 +8,7 @@
     {% for park in all_parks %}
         <li class="park">
             <div>
-                {{ park.title }} in {{park.city}}, {{ park.state }} 
+                <a href="{% url 'BirdieApp:park' park.id %}">{{ park.title }}</a>  
             </div>
         </li>
     {% endfor %}

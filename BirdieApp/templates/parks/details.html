@@ -1,0 +1,18 @@
+{% extends 'birdie_templates/base.html' %}
+
+{% block content %}
+<input type=button value="Back" onClick="javascript:history.go(-1);">
+    <section id="park-details">
+        <h1>{{ park.title }} is located in {{ park.city }}, {{ park.state }}</h1>
+    </section>
+
+    <form action="{% url 'BirdieApp:park' park.park_id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        <button>Delete</button>
+    </form>
+    <form action="{% url 'BirdieApp:park_edit_form' park.park_id %}" method="GET">
+        {% csrf_token %}
+        <button>Edit</button>
+    </form>
+{% endblock %}

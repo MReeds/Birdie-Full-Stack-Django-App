@@ -4,7 +4,6 @@
 <input type=button value="Back" onClick="javascript:history.go(-1);">
 
     <h1>Save a new disc</h1>
-    <h1>{{disc.disc_type}}</h1>
     
     {% if disc.disc_id is not None %}
         <form action="{% url 'BirdieApp:disc' disc.disc_id %}" method="post">

@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from BirdieApp.models import Park, model_factory
 from ..connection import Connection
+from .details import get_park
 
 @login_required
 def park_form(request):
@@ -11,17 +12,15 @@ def park_form(request):
 
         return render(request, template)
     
-# @login_required
-# def book_edit_form(request, book_id):
+@login_required
+def park_edit_form(request, park_id):
 
-#     if request.method == 'GET':
-#         book = get_book(book_id)
-#         libraries = get_libraries()
+    if request.method == 'GET':
+        park = get_park(park_id)
 
-#         template = 'books/form.html'
-#         context = {
-#             'book': book,
-#             'all_libraries': libraries
-#         }
+        template = 'parks/form.html'
+        context = {
+            'park': park
+        }
 
-#         return render(request, template, context)
+        return render(request, template, context)

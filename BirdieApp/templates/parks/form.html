@@ -3,7 +3,11 @@
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
 
+    {% if park.park_id is not None %}
+    <h1>Edit</h1>
+    {% else %}
     <h1>Create a Park</h1>
+    {% endif %}
 
     {% if park.park_id is not None %}
         <form action="{% url 'BirdieApp:park' park.park_id %}" method="post">

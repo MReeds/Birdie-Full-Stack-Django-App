@@ -4,7 +4,24 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from ..connection import Connection
 from BirdieApp.models.model_factory import model_factory
-from BirdieApp.models import Bag
+from BirdieApp.models import Bag, Disc
+
+def disc_list():
+    with sqlite3.connect(Connection.db_path) as conn:
+        conn.row_factory = model_factory(Disc)
+        db_cursor = conn.cursor()
+            
+        db_cursor.execute("""
+            SELECT
+                d.id,
+                d.name,
+                d.brand,
+                d.disc_type,
+                d.bag_id
+            FROM BirdieApp_disc d
+            """)
+
+        return db_cursor.fetchall()
 
 def get_bag(bag_id):
     with sqlite3.connect(Connection.db_path) as conn:
@@ -24,11 +41,13 @@ def get_bag(bag_id):
 @login_required
 def bag_details(request, bag_id):
     if request.method == 'GET':
+        all_discs = disc_list()
         bag = get_bag(bag_id)
         
         template = 'bags/details.html'
         context = {
-            'bag': bag
+            'bag': bag,
+            'discs': all_discs
         }
         
         return render(request, template, context)

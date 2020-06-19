@@ -28,7 +28,7 @@ def disc_list(request):
             
             all_discs = db_cursor.fetchall()
         
-        template = 'discs/list.html'
+        template = ('discs/list.html', 'bags/details.html')
         context = {
             'all_discs': all_discs
         }

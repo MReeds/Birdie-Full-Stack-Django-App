@@ -10,7 +10,7 @@
     {% if game.user_id == request.user.id %}
     <h3>
         <li class="game">
-            <h3 class="game">{{ game.started_at }}</h3>
+            <a href="{% url 'BirdieApp:game' game.id %}">{{ game.started_at }}</a>
         </li>
     </h3>
         {% endif %}

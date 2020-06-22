@@ -23,7 +23,9 @@
             <select id="bag" name="bag_id">
                 <option value="NULL">None</option>
                 {% for bag in all_bags %}
+                {% if bag.user_id == request.user.id %}
                     <option {% if disc.bag_id == bag %}selected{% endif %} value="{{ bag.bag_id }}">{{ bag.brand }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
         </fieldset>

@@ -19,6 +19,7 @@ def get_bags():
         db_cursor.execute("""
         SELECT
             b.id AS bag_id,
+            b.user_id,
             b.brand
         FROM BirdieApp_bag b
         """)

@@ -4,7 +4,7 @@
 <input type=button value="Back" onClick="javascript:history.go(-1);">
 
     {% if game.game_id is not None %}
-    <h1>Edit</h1>
+    <h1>Edit Game</h1>
     {% else %}
     <h1>Save a game</h1>
     {% endif %}
@@ -22,7 +22,7 @@
             <select required id="bag" name="bag_id">
                 {% for bag in all_bags %}
                 {% if bag.user_id == request.user.id %}
-                    <option {% if bag.bag_id == bag %}selected{% endif %} value="{{ bag.bag_id }}">{{ bag.brand }}</option>
+                    <option {% if game.brand == bag.brand %}selected{% endif %} value="{{ bag.bag_id }}">{{ bag.brand }}</option>
                     {% endif %}
                 {% endfor %}
             </select>
@@ -31,7 +31,7 @@
             <label for="park">Park played: </label>
             <select required id="park" name="park_id">
                 {% for park in all_parks %}
-                    <option value="{{ park.park_id }}">{{ park.title }}</option>
+                    <option {% if game.title == park.title %}selected{% endif %} value="{{ park.park_id }}">{{ park.title }}</option>
                 {% endfor %}
             </select>
         </fieldset>

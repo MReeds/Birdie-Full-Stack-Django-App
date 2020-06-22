@@ -7,4 +7,15 @@
             and had a final score of {{game.score}}. 
         </h2>
     </section>
+
+    <form action="{% url 'BirdieApp:game' game.game_id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        <button>Delete</button>
+    </form>
+
+    <form action="{% url 'BirdieApp:game_edit_form' game.game_id %}" method="GET">
+        {% csrf_token %}
+        <button>Edit</button>
+    </form>
 {% endblock %}

@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from BirdieApp.models import Bag, Park, model_factory
 from ..connection import Connection
+from .details import get_game
 
 def get_parks():
     with sqlite3.connect(Connection.db_path) as conn:
@@ -42,6 +43,23 @@ def game_form(request):
         bags = get_bags
         template = 'games/form.html'
         context = {
+            'all_parks': parks,
+            'all_bags': bags
+        }
+
+        return render(request, template, context)
+    
+@login_required
+def game_edit_form(request, game_id):
+
+    if request.method == 'GET':
+        game = get_game(game_id)
+        parks = get_parks
+        bags = get_bags
+
+        template = 'games/form.html'
+        context = {
+            'game': game,
             'all_parks': parks,
             'all_bags': bags
         }

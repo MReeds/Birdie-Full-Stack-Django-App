@@ -39,49 +39,41 @@ def game_details(request, game_id):
         
         return render(request, template, context)
     
-    # if request.method == 'POST':
-    #     form_data = request.POST
+    if request.method == 'POST':
+        form_data = request.POST
 
-    #     if (
-    #         "actual_method" in form_data
-    #         and form_data["actual_method"] == "DELETE"
-    #     ):
-    #         with sqlite3.connect(Connection.db_path) as conn:
-    #             db_cursor = conn.cursor()
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "DELETE"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
 
-    #             db_cursor.execute("""
-    #             DELETE FROM BirdieApp_disc
-    #             WHERE id = ?
-    #             """, (disc_id,))
+                db_cursor.execute("""
+                DELETE FROM BirdieApp_game
+                WHERE id = ?
+                """, (game_id,))
 
-    #         return redirect(reverse('BirdieApp:discs'))
+            return redirect(reverse('BirdieApp:games'))
         
-    #     if (
-    #         "actual_method" in form_data
-    #         and form_data["actual_method"] == "PUT"
-    #     ):
-    #         with sqlite3.connect(Connection.db_path) as conn:
-    #             db_cursor = conn.cursor()
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "PUT"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
 
-    #             db_cursor.execute("""
-    #             UPDATE BirdieApp_disc
-    #             SET bag_id = ?,
-    #                 brand = ?,
-    #                 name = ?,
-    #                 disc_type = ?,
-    #                 color = ?,
-    #                 speed = ?,
-    #                 glide = ?,
-    #                 turn = ?,
-    #                 fade = ?
-    #             WHERE id = ?
-    #             """,
-    #             (
-    #                 form_data['bag_id'], form_data['brand'],
-    #                 form_data['name'], form_data['disc_type'],
-    #                 form_data['color'], form_data['speed'],
-    #                 form_data['glide'], form_data['turn'], 
-    #                 form_data['fade'],  disc_id,
-    #             ))
+                db_cursor.execute("""
+                UPDATE BirdieApp_game
+                SET game_id = ?,
+                    score = ?,
+                    bag_id = ?,
+                    park_id = ?,
+                WHERE id = ?
+                """,
+                (
+                    form_data['game_id'], form_data['score'],
+                    form_data['bag_id'], form_data['park_id'], game_id,
+                ))
 
-    #         return redirect(reverse('BirdieApp:discs'))
+            return redirect(reverse('BirdieApp:games'))

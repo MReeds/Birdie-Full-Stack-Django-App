@@ -5,7 +5,7 @@
     <h1>Parks</h1>
 
     <ul class="parks">
-    {% for park in all_parks %}
+        {% for park in all_parks %}
         <li class="park">
             <div>
                 <a href="{% url 'BirdieApp:park' park.id %}">{{ park.title }}</a>  

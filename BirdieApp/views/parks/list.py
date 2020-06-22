@@ -4,7 +4,6 @@ from BirdieApp.models import model_factory, Park
 from ..connection import Connection
 from django.contrib.auth.decorators import login_required
 
-@login_required
 def park_list(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:

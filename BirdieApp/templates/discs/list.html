@@ -6,12 +6,14 @@
 
 <ul class="discs">
     {% for disc in all_discs %}
+    {% if disc.user_id == request.user.id %}
         <li class="disc">
             <a class="disc_name" href="{% url 'BirdieApp:disc' disc.id %}">{{ disc.name }}</a>
             <div>
                {{ disc.brand }} - {{ disc.disc_type }} 
             </div>
         </li>
+        {% endif %}
     {% endfor %}
     </ul>
 

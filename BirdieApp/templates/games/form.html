@@ -1,0 +1,50 @@
+{% extends 'birdie_templates/base.html' %}
+
+{% block content %}
+<input type=button value="Back" onClick="javascript:history.go(-1);">
+
+    {% if game.game_id is not None %}
+    <h1>Edit</h1>
+    {% else %}
+    <h1>Save a game</h1>
+    {% endif %}
+
+    {% if game.game_id is not None %}
+        <form action="{% url 'BirdieApp:game' game.game_id %}" method="post">
+        <input type="hidden" name="actual_method" value="PUT">
+    {% else %}
+        <form action="{% url 'BirdieApp:games' %}" method="post">
+    {% endif %}
+        {% csrf_token %}
+    
+        <fieldset>
+            <label for="bag">Bag used: </label>
+            <select required id="bag" name="bag_id">
+                {% for bag in all_bags %}
+                {% if bag.user_id == request.user.id %}
+                    <option {% if bag.bag_id == bag %}selected{% endif %} value="{{ bag.bag_id }}">{{ bag.brand }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </fieldset>
+        <fieldset>
+            <label for="park">Park played: </label>
+            <select required id="park" name="park_id">
+                {% for park in all_parks %}
+                    <option value="{{ park.park_id }}">{{ park.title }}</option>
+                {% endfor %}
+            </select>
+        </fieldset>
+        <fieldset>
+            <label for="score">Final Score: </label>
+            <input required id="score" type="number" name="score" value="{{ game.score }}">
+        </fieldset>
+        <fieldset>
+            <label for="date">Date played: </label>
+            <input required id="date" type="date" name="started_at" value="{{ game.started_at }}">
+        </fieldset>
+        <input type="submit" value="Submit" />
+    </form>
+
+{% endblock %}
+

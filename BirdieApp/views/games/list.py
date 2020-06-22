@@ -33,21 +33,19 @@ def game_list(request):
         
         return render(request, template, context)
     
-    # elif request.method == 'POST':
-    #     form_data = request.POST
-    #     user_id = request.user.id
+    elif request.method == 'POST':
+        form_data = request.POST
+        user_id = request.user.id
         
-    #     with sqlite3.connect(Connection.db_path) as conn:
-    #         db_cursor = conn.cursor()
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
             
-    #         db_cursor.execute("""
-    #         INSERT INTO BirdieApp_disc
-    #             (user_id, brand, name, disc_type, color, speed, glide, turn, fade)
-    #         VALUES
-    #             (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    #         """,
-    #         (user_id, form_data['brand'], form_data['name'], form_data['disc_type'],
-    #          form_data['color'], form_data['speed'], form_data['glide'],
-    #          form_data['turn'], form_data['fade']))
+            db_cursor.execute("""
+            INSERT INTO BirdieApp_game
+                (user_id, started_at, score, bag_id, park_id)
+            VALUES
+                (?, ?, ?, ?, ?)
+            """,
+            (user_id, form_data['started_at'], form_data['score'], form_data['bag_id'], form_data['park_id']))
             
-    #     return redirect(reverse('BirdieApp:discs'))
+        return redirect(reverse('BirdieApp:games'))

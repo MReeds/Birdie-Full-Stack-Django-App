@@ -16,4 +16,7 @@
         {% endif %}
     {% endfor %}
     </ol>
+    <form action="{% url 'BirdieApp:game_form'%}" method="GET">
+        {% csrf_token %}
+            <button>Save a new game</button>
 {% endblock %}

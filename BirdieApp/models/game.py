@@ -9,7 +9,7 @@ class Game(models.Model):
     park = models.ForeignKey(Park, on_delete=models.DO_NOTHING)
     bag = models.ForeignKey(Bag, on_delete=models.DO_NOTHING)
     score = models.IntegerField(null=True)
-    started_at = models.DateTimeField(auto_now=True)
+    started_at = models.DateTimeField(auto_now_add=True, null=True)
     
     class Meta:
         verbose_name = ("game")

@@ -21,7 +21,8 @@ def game_list(request):
                     p.title
                 FROM BirdieApp_game g
                 JOIN BirdieApp_bag b ON b.id = g.bag_id
-                JOIN BirdieApp_park p ON p.id = g.park_id;
+                JOIN BirdieApp_park p ON p.id = g.park_id
+                ORDER BY g.started_at;
                 """)
             
             all_games = db_cursor.fetchall()

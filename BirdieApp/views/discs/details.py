@@ -6,6 +6,7 @@ from ..connection import Connection
 from BirdieApp.models.model_factory import model_factory
 from BirdieApp.models import Disc
 
+
 def get_disc(disc_id):
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = model_factory(Disc)

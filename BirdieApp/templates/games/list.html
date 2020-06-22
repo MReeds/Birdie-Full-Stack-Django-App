@@ -1,0 +1,22 @@
+{% extends 'birdie_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Your games</h1>
+
+<ol class="games">
+    {% for game in all_games %}
+    {% if game.user_id == request.user.id %}
+    <h3>
+        <li class="game">
+            <a href="{% url 'BirdieApp:game' game.id %}">{{ game.started_at }}</a>
+        </li>
+    </h3>
+        {% endif %}
+    {% endfor %}
+    </ol>
+    <form action="{% url 'BirdieApp:game_form'%}" method="GET">
+        {% csrf_token %}
+            <button>Save a new game</button>
+{% endblock %}

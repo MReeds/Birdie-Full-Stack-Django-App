@@ -5,6 +5,7 @@ app_name = 'BirdieApp'
 
 urlpatterns = [
     path('', home, name='home'),
+    path('games/', game_list, name='games'),
     path('parks/', park_list, name="parks"),
     path('park/form/', park_form, name="park_form"),
     path('parks/<int:park_id>/', park_details, name="park"),

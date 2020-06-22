@@ -10,3 +10,4 @@ from .discs.form import disc_edit_form
 from .bags.list import bag_list
 from .bags.form import bag_form
 from .bags.details import bag_details
+from .games.list import game_list

@@ -7,9 +7,11 @@
 
 <ul class="bags">
     {% for bag in all_bags %}
+    {% if bag.user_id == request.user.id %}
         <li class="bags">
             <a href="{% url 'BirdieApp:bag' bag.id %}">{{ bag.brand }}</a>
         </li>
+        {% endif %}
     {% endfor %}
     </ul>
     <form action="{% url 'BirdieApp:bag_form'%}" method="GET">

@@ -2,8 +2,10 @@ from django.db import models
 from django.urls import reverse
 from .park import Park
 from .bag import Bag
+from django.contrib.auth.models import User
 
 class Game(models.Model):
+    user =  models.ForeignKey(User, on_delete=models.CASCADE)
     park = models.ForeignKey(Park, on_delete=models.DO_NOTHING)
     bag = models.ForeignKey(Bag, on_delete=models.DO_NOTHING)
     score = models.IntegerField(null=True)

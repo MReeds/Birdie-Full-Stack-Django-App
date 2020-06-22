@@ -14,6 +14,7 @@ def bag_list(request):
             db_cursor.execute("""
                 SELECT
                     b.id,
+                    b.user_id,
                     b.brand
                 FROM BirdieApp_bag b
                 """)
@@ -29,16 +30,17 @@ def bag_list(request):
     
     elif request.method == 'POST':
         form_data = request.POST
+        user_id = request.user.id
         
         with sqlite3.connect(Connection.db_path) as conn:
             db_cursor = conn.cursor()
             
             db_cursor.execute("""
             INSERT INTO BirdieApp_bag
-                (brand)
+                (user_id, brand)
             VALUES
-                (?)
+                (?, ?)
             """,
-            (form_data['brand'],))
+            (user_id, form_data['brand'],))
             
         return redirect(reverse('BirdieApp:bags'))

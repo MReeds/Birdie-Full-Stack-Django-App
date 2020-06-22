@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext
 
 class Disc(models.Model):
-        
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     brand = models.CharField(null=True, max_length=20)
     name = models.CharField(null=True, max_length=20)
     disc_type = models.CharField(null=False, max_length=15)

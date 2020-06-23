@@ -1,0 +1,16 @@
+{% extends 'birdie_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+<h3>Username: {{user.username}}</h3>
+<h3>First name: {{user.first_name}}</h3>
+<h3>Last name: {{user.last_name}}</h3>
+<h3>Email: {{user.email}}</h3>
+<h3>Date joined: {{user.date_joined}}</h3>
+
+<form action="{% url 'BirdieApp:account_edit_form' %}" method="GET">
+    {% csrf_token %}
+    <button>Edit</button>
+</form>
+
+{% endblock %}

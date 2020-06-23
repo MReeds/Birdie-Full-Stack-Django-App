@@ -1,0 +1,26 @@
+{% extends 'birdie_templates/base.html' %}
+
+{% block content %}
+<input type=button value="Back" onClick="javascript:history.go(-1);">
+    <h1>Edit Account</h1>
+
+    <form action="{% url 'BirdieApp:account' %}" method="post">
+        {% csrf_token %}
+    <input type="hidden" name="actual_method" value="PUT">
+
+        <fieldset>
+            <label for="first_name">First name: </label>
+            <input id="first_name" type="text" name="first_name" value="{{ request.user.first_name }}">
+        </fieldset>
+        <fieldset>
+            <label for="last_name">Last name: </label>
+            <input id="last_name" type="text" name="last_name" value="{{ request.user.last_name }}">
+        </fieldset>
+        <fieldset>
+            <label for="email">Email: </label>
+            <input id="email" type="text" name="email" value="{{ request.user.email }}">
+        </fieldset>
+        <input type="submit" value="Submit" />
+    </form>
+
+{% endblock %}

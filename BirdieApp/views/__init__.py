@@ -14,3 +14,5 @@ from .games.list import game_list
 from .games.details import game_details
 from .games.form import game_form
 from .games.form import game_edit_form
+from .account.details import account_details
+from .account.form import account_edit_form

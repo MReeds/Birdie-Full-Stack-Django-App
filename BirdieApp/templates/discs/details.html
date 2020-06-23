@@ -3,7 +3,7 @@
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
     <section id="disc-details">
-        <h1>{{ disc.name }} -- {{ disc.color }} - {{ disc.disc_type }}</h1>
+        <h1>{{ disc.name }} -- {{ disc.color }} {{ disc.disc_type }}</h1>
         <h3>by {{ disc.brand }}</h3>
         <div>{{ disc.name }} has a flight rating of <strong>{{ disc.speed }} | {{ disc.glide }} | {{ disc.turn }} | {{ disc.fade }}</strong></div>
     </section>

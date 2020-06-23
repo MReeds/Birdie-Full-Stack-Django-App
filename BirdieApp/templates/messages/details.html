@@ -1,0 +1,15 @@
+{% extends 'birdie_templates/base.html' %}
+
+{% block content %}
+<input type=button value="Back" onClick="javascript:history.go(-1);">
+    <section id="message-details">
+        {% for message in user_messages %}
+        {% if request.user.id == message.creator_id %}
+        <h2>{{message.current_username}}</h2>
+        {% else %}
+        <h2>{{message.username}}</h2>
+        {% endif %}
+        <div>{{message.content}}</div>
+        {% endfor %}
+    </section>
+{% endblock %}

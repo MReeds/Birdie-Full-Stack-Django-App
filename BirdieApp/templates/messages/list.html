@@ -1,0 +1,19 @@
+{% extends 'birdie_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Messages</h1>
+
+<ul class="messages">
+    {% for user in all_users %}
+    {% if user.username == request.user.username %}
+    <div></div>
+    {% else %}
+    <li>
+        <a href="{% url 'BirdieApp:message' user.user_id %}">{{user.username}}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}

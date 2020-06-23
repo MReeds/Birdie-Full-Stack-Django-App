@@ -33,15 +33,15 @@
         
         <fieldset>
             <label for="brand">Brand: </label>
-            <input id="brand" type="text" name="brand" value="{{ disc.brand }}">
+            <input required id="brand" type="text" name="brand" value="{{ disc.brand }}">
         </fieldset>
         <fieldset>
             <label for="name">Name: </label>
-            <input id="name" type="text" name="name" value="{{ disc.name }}">
+            <input required id="name" type="text" name="name" value="{{ disc.name }}">
         </fieldset>
         <fieldset>
             <label for="disc_type">Type: </label>
-            <select id="disc_type" name="disc_type">
+            <select required id="disc_type" name="disc_type">
                 {% for type in types %}
                     <option {% if disc.disc_type == type %}selected{% endif %}>{{ type }}</option>
                 {% endfor %}
@@ -53,19 +53,19 @@
         </fieldset>
         <fieldset>
             <label for="speed">Speed: </label>
-            <input id="speed" type="number" name="speed" value="{{ disc.speed }}">
+            <input required id="speed" type="number" name="speed" value="{{ disc.speed }}">
         </fieldset>
         <fieldset>
             <label for="glide">Glide: </label>
-            <input id="glide" type="number" name="glide" value="{{ disc.glide }}">
+            <input required id="glide" type="number" name="glide" value="{{ disc.glide }}">
         </fieldset>
         <fieldset>
             <label for="turn">Turn: </label>
-            <input id="turn" type="number" name="turn" value="{{ disc.turn }}">
+            <input required id="turn" type="number" name="turn" value="{{ disc.turn }}">
         </fieldset>
         <fieldset>
             <label for="fade">Fade: </label>
-            <input id="fade" type="number" name="fade" value="{{ disc.fade }}">
+            <input required id="fade" type="number" name="fade" value="{{ disc.fade }}">
         </fieldset>
         <input type="submit" value="Submit" />
     </form>

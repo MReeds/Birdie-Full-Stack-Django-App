@@ -24,7 +24,8 @@ def get_disc(disc_id):
             d.speed,
             d.glide,
             d.turn,
-            d.fade
+            d.fade,
+            d.user_id
         FROM BirdieApp_disc d
         WHERE d.id = ?
         """, (disc_id,))
@@ -35,9 +36,11 @@ def get_disc(disc_id):
 def disc_details(request, disc_id):
     if request.method == 'GET':
         disc = get_disc(disc_id)
+        current_user = request.user.id
         
         template = 'discs/details.html'
         context = {
+            'current_user': current_user,
             'disc': disc
         }
         

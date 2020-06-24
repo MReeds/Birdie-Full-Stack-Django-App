@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block content %}
+
 <input type=button value="Back" onClick="javascript:history.go(-1);">
+{% if current_user == bag.user_id %}
 <ul class="discs">
     {% for disc in discs %}
         {% if disc.bag_id == bag.bag_id %}
@@ -20,4 +22,5 @@
 <form action="{% url 'BirdieApp:discs'%}" method="GET">
     {% csrf_token %}
         <button>Fill your bag</button>
+        {% endif %}
 {% endblock %}

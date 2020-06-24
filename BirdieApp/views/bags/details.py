@@ -31,6 +31,7 @@ def get_bag(bag_id):
         db_cursor.execute("""
         SELECT
             b.id AS bag_id,
+            b.user_id,
             b.brand
         FROM BirdieApp_bag b
         WHERE b.id = ?
@@ -41,74 +42,15 @@ def get_bag(bag_id):
 @login_required
 def bag_details(request, bag_id):
     if request.method == 'GET':
+        current_user = request.user.id
         all_discs = disc_list()
         bag = get_bag(bag_id)
         
         template = 'bags/details.html'
         context = {
+            'current_user': current_user,
             'bag': bag,
             'discs': all_discs
         }
         
         return render(request, template, context)
-
-
-# @login_required
-# def book_details(request, book_id):
-#     if request.method == 'GET':
-#         book = get_book(book_id)
-
-#         template = 'books/details.html'
-#         context = {
-#             'book': book
-#         }
-
-#         return render(request, template, context)
-      
-#     if request.method == 'POST':
-#         form_data = request.POST
-
-#         # Check if this POST is for deleting a book
-#         #
-#         # Note: You can use parenthesis to break up complex
-#         #       `if` statements for higher readability
-#         if (
-#             "actual_method" in form_data
-#             and form_data["actual_method"] == "DELETE"
-#         ):
-#             with sqlite3.connect(Connection.db_path) as conn:
-#                 db_cursor = conn.cursor()
-
-#                 db_cursor.execute("""
-#                 DELETE FROM libraryapp_book
-#                 WHERE id = ?
-#                 """, (book_id,))
-
-#             return redirect(reverse('libraryapp:books'))
-
-#         # Check if this POST is for editing a book
-#         if (
-#             "actual_method" in form_data
-#             and form_data["actual_method"] == "PUT"
-#         ):
-#             with sqlite3.connect(Connection.db_path) as conn:
-#                 db_cursor = conn.cursor()
-
-#                 db_cursor.execute("""
-#                 UPDATE libraryapp_book
-#                 SET title = ?,
-#                     author = ?,
-#                     isbn = ?,
-#                     year_published = ?,
-#                     location_id = ?,
-#                     publisher = ?
-#                 WHERE id = ?
-#                 """,
-#                 (
-#                     form_data['title'], form_data['author'],
-#                     form_data['isbn'], form_data['year_published'],
-#                     form_data["location"], form_data["publisher"], 
-#                     book_id,
-#                 ))
-
-#             return redirect(reverse('libraryapp:books'))

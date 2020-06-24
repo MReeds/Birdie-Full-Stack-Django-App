@@ -5,6 +5,7 @@ from .details import get_disc
 from ..connection import Connection
 from BirdieApp.models import Bag, model_factory
 
+
 types = [
     'Putter',
     'Mid-range',

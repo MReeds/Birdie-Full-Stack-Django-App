@@ -17,6 +17,7 @@ def get_game(game_id):
             g.id AS game_id,
             g.score,
             g.started_at,
+            g.user_id,
             b.brand,
             p.title
         FROM BirdieApp_game g
@@ -31,10 +32,12 @@ def get_game(game_id):
 def game_details(request, game_id):
     if request.method == 'GET':
         game = get_game(game_id)
+        current_user = request.user.id
         
         template = 'games/details.html'
         context = {
-            'game': game
+            'game': game,
+            'current_user': current_user
         }
         
         return render(request, template, context)
@@ -65,15 +68,14 @@ def game_details(request, game_id):
 
                 db_cursor.execute("""
                 UPDATE BirdieApp_game
-                SET game_id = ?,
-                    score = ?,
+                SET score = ?,
                     bag_id = ?,
-                    park_id = ?,
+                    park_id = ?
                 WHERE id = ?
                 """,
                 (
-                    form_data['game_id'], form_data['score'],
-                    form_data['bag_id'], form_data['park_id'], game_id,
+                    form_data['score'], form_data['bag_id'], 
+                    form_data['park_id'], game_id,
                 ))
 
             return redirect(reverse('BirdieApp:games'))

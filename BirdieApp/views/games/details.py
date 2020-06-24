@@ -68,15 +68,14 @@ def game_details(request, game_id):
 
                 db_cursor.execute("""
                 UPDATE BirdieApp_game
-                SET game_id = ?,
-                    score = ?,
+                SET score = ?,
                     bag_id = ?,
-                    park_id = ?,
+                    park_id = ?
                 WHERE id = ?
                 """,
                 (
-                    form_data['game_id'], form_data['score'],
-                    form_data['bag_id'], form_data['park_id'], game_id,
+                    form_data['score'], form_data['bag_id'], 
+                    form_data['park_id'], game_id,
                 ))
 
             return redirect(reverse('BirdieApp:games'))

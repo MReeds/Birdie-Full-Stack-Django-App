@@ -2,8 +2,14 @@
 
 {% block page_header %}
     <div>
-        <h1>Enjoy the day with friends and your favorite discs</h1>
-
-        <p >Create your discs, create a bag loadout, pick a park, have fun.</p>
+        {% if request.user.first_name %}
+        <h2>Welcome to Birdie, {{request.user.first_name}}</h2>
+        {% else %}
+        <h2>Welcome to Birdie, {{request.user.username}}</h2>
+        {% endif %}
+        <h3>Save all your disc specs.</h3>
+        <h3>Create a bag and edit your discs to save a loadout.</h3>
+        <h3>Save game details</h3>
+        <h3>Brag about your scores.</h3>
     </div>
 {% endblock page_header %}

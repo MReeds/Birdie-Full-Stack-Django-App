@@ -25,7 +25,8 @@ def get_messages(current_user_id, user_id):
         OR m.creator_id = v.id
         AND m.recipient_id = u.id
         WHERE u.id = ?
-        AND v.id = ?;
+        AND v.id = ?
+        ORDER BY m.id;
         """, (current_user_id, user_id))
 
         return db_cursor.fetchall()
@@ -38,7 +39,29 @@ def message_details(request, user_id):
         
         template = 'messages/details.html'
         context = {
+            'user': user_id,
             'user_messages': messages
         }
         
         return render(request, template, context)
+    
+    elif request.method == 'POST':
+        form_data = request.POST
+        
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+            current_user_id = request.user.id
+            
+            db_cursor.execute("""
+            INSERT INTO BirdieApp_message
+                (creator_id,
+                recipient_id,
+                content,
+                created_at,
+                expiration_date)
+            VALUES
+                (?, ?, ?, ?, ?);
+            """,
+            (current_user_id, user_id, form_data['content'], form_data['created_at'], form_data['expiration_date'],))
+            
+        return redirect(reverse('BirdieApp:messages'))

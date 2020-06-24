@@ -5,11 +5,22 @@
     <section id="message-details">
         {% for message in user_messages %}
         {% if request.user.id == message.creator_id %}
-        <h2>{{message.current_username}}</h2>
+        <h3>You said:</h3>
         {% else %}
-        <h2>{{message.username}}</h2>
+        <h3>{{message.username}}</h3>
         {% endif %}
-        <div>{{message.content}}</div>
+        <p>- {{message.content}}</p>
         {% endfor %}
     </section>
+
+    <form action="{% url 'BirdieApp:message' user %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <label for="content">Message: </label>
+        <textarea name="content" rows="5" cols="30" value="{{ content }}"></textarea>
+    </fieldset>
+        <input type="hidden" name="created_at" value="">
+        <input type="hidden" name="expiration_date" value="">
+    <input type="submit" value="Send" />
+    </form>
 {% endblock %}

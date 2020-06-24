@@ -17,6 +17,7 @@ def get_game(game_id):
             g.id AS game_id,
             g.score,
             g.started_at,
+            g.user_id,
             b.brand,
             p.title
         FROM BirdieApp_game g
@@ -31,10 +32,12 @@ def get_game(game_id):
 def game_details(request, game_id):
     if request.method == 'GET':
         game = get_game(game_id)
+        current_user = request.user.id
         
         template = 'games/details.html'
         context = {
-            'game': game
+            'game': game,
+            'current_user': current_user
         }
         
         return render(request, template, context)

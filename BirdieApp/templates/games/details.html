@@ -2,6 +2,7 @@
 
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
+{% if current_user == game.user_id %}
     <section id="game-details">
         <h2>Played on {{ game.started_at }} was played at {{ game.title }} 
             and had a final score of {{game.score}}. 
@@ -18,4 +19,5 @@
         {% csrf_token %}
         <button>Edit</button>
     </form>
+    {% endif %}
 {% endblock %}

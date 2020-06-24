@@ -27,21 +27,20 @@ def user_list(request):
         }
         
         return render(request, template, context)
-
     
     # elif request.method == 'POST':
     #     form_data = request.POST
-    #     user_id = request.user.id
         
     #     with sqlite3.connect(Connection.db_path) as conn:
     #         db_cursor = conn.cursor()
+    #         current_user_id = request.user.id
             
     #         db_cursor.execute("""
-    #         INSERT INTO BirdieApp_game
-    #             (user_id, started_at, score, bag_id, park_id)
+    #         INSERT INTO BirdieApp_message
+    #             (content)
     #         VALUES
-    #             (?, ?, ?, ?, ?)
+    #             (?);
     #         """,
-    #         (user_id, form_data['started_at'], form_data['score'], form_data['bag_id'], form_data['park_id']))
+    #         (form_data['content'], current_user_id, user_id))
             
-    #     return redirect(reverse('BirdieApp:games'))
+    #     return redirect(reverse('BirdieApp:messages/'))

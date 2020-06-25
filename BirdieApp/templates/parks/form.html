@@ -17,7 +17,7 @@
         <form action="{% url 'BirdieApp:parks' %}" method="post">
     {% endif %}
         {% csrf_token %}
-
+            
         <fieldset>
             <label for="title">Title: </label>
             <input required id="title" type="text" name="title" value="{{ park.title }}">

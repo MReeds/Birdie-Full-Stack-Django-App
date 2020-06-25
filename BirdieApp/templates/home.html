@@ -1,7 +1,7 @@
 {% extends "birdie_templates/base.html" %}
 
 {% block page_header %}
-    <div>
+    <div class="text-left">
         {% if request.user.first_name %}
         <h2>Welcome to Birdie, {{request.user.first_name}}!</h2>
         {% else %}

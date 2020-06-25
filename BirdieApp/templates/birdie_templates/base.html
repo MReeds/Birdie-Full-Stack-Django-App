@@ -1,21 +1,20 @@
+{% load static %}
 {% load bootstrap4 %}
-
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birdie</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Birdie</title>
 </head>
 <body>
     
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
 
-        <a class="navbar-brand">
-            Birdie</a>
+        <a class="navbar-brand">Birdie</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -51,36 +50,31 @@
         </ul> 
     </div>
 </nav>
-<nav class="bottom-nav">
-    <div>
-        {% if user.is_authenticated %}
-        <ul class="main-nav-item">
-            <li class="nav-link">
-                <a class="nav-link" href="{% url 'BirdieApp:parks' %}">Parks</a>
-            </li>
-            <li class="nav-link">
-                <a class="nav-link" href="{% url 'BirdieApp:bags' %}">Bags</a>
-            </li>
-            <li class="nav-link">
-                <a class="nav-link" href="{% url 'BirdieApp:home' %}">Home</a>
-            </li>
-            <li class="nav-link">
-                <a class="nav-link" href="{% url 'BirdieApp:games' %}">Games</a>
-            </li>
-            <li class="nav-link">
-                <a class="nav-link" href="{% url 'BirdieApp:messages' %}">Messages</a>
-            </li>
-            {% endif %}
-        </ul>
+<main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %} {% endblock page_header %}
     </div>
-</nav>
-    <main role="main" class="container">
-        <div class="pb-2 mb-2 border-bottom">
-            {% block page_header %} {% endblock page_header %}
-        </div>
-        <div>
-            {% block content %} {% endblock content %}
-        </div>
+    <nav>
+        {% block content %} {% endblock content %}
+    </nav>
+    <nav class="navbar navbar-expand-sm bg-light justify-content-center">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav sm-auto">
+                <li class="nav-link">
+                    <a class="nav-link" class="park-link" href="{% url 'BirdieApp:parks' %}">Parks</a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" class="bag-link" href="{% url 'BirdieApp:bags' %}">Bags</a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" class="game-link" href="{% url 'BirdieApp:games' %}">Games</a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" class="message-link" href="{% url 'BirdieApp:messages' %}">Messages</a>
+                </li>
+                {% endif %}
+            </ul>
+    </nav>
     </main>
 </body>
 </html>

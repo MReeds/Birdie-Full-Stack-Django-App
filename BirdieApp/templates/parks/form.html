@@ -1,4 +1,5 @@
 {% extends 'birdie_templates/base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
@@ -16,7 +17,7 @@
         <form action="{% url 'BirdieApp:parks' %}" method="post">
     {% endif %}
         {% csrf_token %}
-
+            
         <fieldset>
             <label for="title">Title: </label>
             <input required id="title" type="text" name="title" value="{{ park.title }}">
@@ -29,7 +30,9 @@
             <label for="state">State: </label>
             <input required id="state" type="text" name="state" value="{{ park.state }}">
         </fieldset>
-        <input type="submit" value="Submit" />
+        {% buttons %}
+    <button class="btn btn-primary">Submit</button>
+    {% endbuttons %}
     </form>
 
 {% endblock %}

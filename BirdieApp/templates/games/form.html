@@ -1,4 +1,5 @@
 {% extends 'birdie_templates/base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
@@ -43,7 +44,9 @@
             <label for="date">Date played: </label>
             <input required id="date" type="date" name="started_at" value="{{ game.started_at }}">
         </fieldset>
-        <input type="submit" value="Submit" />
+        {% buttons %}
+    <button class="btn btn-primary">Save</button>
+    {% endbuttons %}
     </form>
 
 {% endblock %}

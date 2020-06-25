@@ -1,3 +1,6 @@
+{% extends 'birdie_templates/base.html' %}
+{% load bootstrap4 %}
+
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
     <section id="message-details">
@@ -15,10 +18,12 @@
     {% csrf_token %}
     <fieldset>
         <label for="content">Message: </label>
-        <textarea name="content" rows="5" cols="30" value="{{ content }}"></textarea>
+        <textarea required placeholder="Write your message" name="content" rows="5" cols="30" value="{{ content }}"></textarea>
     </fieldset>
         <input type="hidden" name="created_at" value="">
         <input type="hidden" name="expiration_date" value="">
-    <input type="submit" value="Send" />
+        {% buttons %}
+    <button type="submit" class="btn btn-primary" value="Send">Send</button>
+    {% endbuttons %}
     </form>
 {% endblock %}

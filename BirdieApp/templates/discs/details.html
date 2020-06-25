@@ -1,4 +1,5 @@
 {% extends 'birdie_templates/base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
@@ -9,14 +10,18 @@
         <div>{{ disc.name }} has a flight rating of <strong>{{ disc.speed }} | {{ disc.glide }} | {{ disc.turn }} | {{ disc.fade }}</strong></div>
     </section>
 
+    <form action="{% url 'BirdieApp:disc_edit_form' disc.disc_id %}" method="GET">
+        {% csrf_token %}
+        {% buttons %}
+    <button class="btn btn-primary">Edit</button>
+    {% endbuttons %}
     <form action="{% url 'BirdieApp:disc' disc.disc_id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="actual_method" value="DELETE">
-        <button>Delete</button>
+        {% buttons %}
+    <button class="btn btn-primary">Delete</button>
+    {% endbuttons %}
     </form>
-    <form action="{% url 'BirdieApp:disc_edit_form' disc.disc_id %}" method="GET">
-        {% csrf_token %}
-        <button>Edit</button>
     </form>
     {% endif %}
 {% endblock %}

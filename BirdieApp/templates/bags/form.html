@@ -1,4 +1,5 @@
 {% extends 'birdie_templates/base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 
@@ -10,7 +11,9 @@
             <label for="brand">Brand: </label>
             <input id="brand" type="text" name="brand" value="{{ bag.brand }}">
         </fieldset>
-        <input type="submit" value="Submit" />
+        {% buttons %}
+    <button class="btn btn-primary">Save</button>
+    {% endbuttons %}
     </form>
 
 {% endblock %}

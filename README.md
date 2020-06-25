@@ -17,7 +17,7 @@ park specifics, create a bag to take and save their scores. Birdie also features
    `python manage.py makemigrations BirdieApp`
    `python manage.py migrate`
 1. Add to INSTALLED_APPS in your settings.py:
-    `INSTALLED_APPS = ( "...", "bootstrap4", "...")`
+    `INSTALLED_APPS = ( "...", "bootstrap4", )`
 1. Start the Server:
    `python manage.py runserver`
 

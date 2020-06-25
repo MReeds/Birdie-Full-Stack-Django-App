@@ -1,9 +1,6 @@
 # **Birdie** Full-Stack Django App
-### Birdie is a disc golf companion app that
-### enables the user to save their disc ratings,
-### park specifics, create a bag to take and save
-### their scores. Birdie also features an integrated
-### user messaging system
+Birdie is a disc golf companion app that enables the user to save their disc ratings,
+park specifics, create a bag to take and save their scores. Birdie also features an integrated user messaging system
 
 ## Installation
 1. Clone down the repo and `cd` into it

@@ -1,16 +1,24 @@
 {% extends 'birdie_templates/base.html' %}
+{% load bootstrap4 %}
 {% load static %}
 
 {% block content %}
-<h3>Username: {{user.username}}</h3>
-<h3>First name: {{user.first_name}}</h3>
-<h3>Last name: {{user.last_name}}</h3>
-<h3>Email: {{user.email}}</h3>
-<h3>Date joined: {{user.date_joined}}</h3>
+<h4>Username:</h4> 
+    <h6>{{user.username}}</h6>
+<h4>First name:</h4>
+     <h6>{{user.first_name}}</h6>
+<h4>Last name:</h4>
+     <h6>{{user.last_name}}</h6>
+<h4>Email:</h4>
+     <h6>{{user.email}}</h6>
+<h4>Date joined:</h4>
+     <h6>{{user.date_joined}}</h6>
 
 <form action="{% url 'BirdieApp:account_edit_form' %}" method="GET">
     {% csrf_token %}
-    <button>Edit</button>
+        {% buttons %}
+    <button class="btn btn-primary">Edit</button>
+    {% endbuttons %}
 </form>
 
 {% endblock %}

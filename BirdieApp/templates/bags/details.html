@@ -1,5 +1,6 @@
 {% extends 'birdie_templates/base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block content %}
 
@@ -21,6 +22,8 @@
     </ul>
 <form action="{% url 'BirdieApp:discs'%}" method="GET">
     {% csrf_token %}
-        <button>Fill your bag</button>
+    {% buttons %}
+<button class="btn btn-primary">Fill your bag</button>
+{% endbuttons %}
         {% endif %}
 {% endblock %}

@@ -7,11 +7,13 @@
 
     <ul class="parks">
         {% for park in all_parks %}
+        {% if park.user_id == request.user.id %}
         <li class="park">
             <div>
                 <a href="{% url 'BirdieApp:park' park.id %}">{{ park.title }}</a>  
             </div>
         </li>
+        {% endif %}
     {% endfor %}
     </ul>
     <form action="{% url 'BirdieApp:park_form'%}" method="GET">

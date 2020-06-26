@@ -3,6 +3,7 @@
 
 {% block content %}
 <input type=button value="Back" onClick="javascript:history.go(-1);">
+{% if current_user == park.user_id %}
     <section id="park-details">
         <h1>{{ park.title }} is located in {{ park.city }}, {{ park.state }}</h1>
     </section>
@@ -20,4 +21,5 @@
             <button class="btn btn-primary">Delete</button>
         {% endbuttons %}
 </form>
+{% endif %}
 {% endblock %}

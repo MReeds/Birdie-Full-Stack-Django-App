@@ -13,6 +13,7 @@ def park_list(request):
             db_cursor.execute("""
                 SELECT
                     p.id,
+                    p.user_id,
                     p.title,
                     p.city,
                     p.state
@@ -30,16 +31,17 @@ def park_list(request):
     
     elif request.method == 'POST':
         form_data = request.POST
+        user_id = request.user.id
         
         with sqlite3.connect(Connection.db_path) as conn:
             db_cursor = conn.cursor()
             
             db_cursor.execute("""
             INSERT INTO BirdieApp_park
-                (title, city, state)
+                (user_id, title, city, state)
             VALUES
-                (?, ?, ?)
+                (?, ?, ?, ?)
             """,
-            (form_data['title'], form_data['city'], form_data['state'],))
+            (user_id, form_data['title'], form_data['city'], form_data['state'],))
             
         return redirect(reverse('BirdieApp:parks'))

@@ -13,15 +13,15 @@
     <form action="{% url 'BirdieApp:disc_edit_form' disc.disc_id %}" method="GET">
         {% csrf_token %}
         {% buttons %}
-    <button class="btn btn-primary">Edit</button>
-    {% endbuttons %}
+        <button class="btn btn-primary">Edit</button>
+        {% endbuttons %}
+    </form>
     <form action="{% url 'BirdieApp:disc' disc.disc_id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="actual_method" value="DELETE">
         {% buttons %}
     <button class="btn btn-primary">Delete</button>
     {% endbuttons %}
-    </form>
     </form>
     {% endif %}
 {% endblock %}

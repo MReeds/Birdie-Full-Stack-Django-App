@@ -25,6 +25,7 @@ def disc_list(request):
                     d.fade,
                     d.brand
                 FROM BirdieApp_disc d
+                ORDER BY d.disc_type
                 """)
             
             all_discs = db_cursor.fetchall()

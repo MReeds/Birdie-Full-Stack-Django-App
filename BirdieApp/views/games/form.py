@@ -13,6 +13,7 @@ def get_parks():
         db_cursor.execute("""
         SELECT
             p.id AS park_id,
+            p.user_id,
             p.title,
             p.city,
             p.state

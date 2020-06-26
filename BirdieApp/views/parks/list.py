@@ -18,6 +18,7 @@ def park_list(request):
                     p.city,
                     p.state
                 FROM BirdieApp_park p
+                ORDER BY p.state
                 """)
             
             all_parks = db_cursor.fetchall()

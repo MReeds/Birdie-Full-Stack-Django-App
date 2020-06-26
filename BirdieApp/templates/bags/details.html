@@ -4,7 +4,6 @@
 
 {% block content %}
 
-<input type=button value="Back" onClick="javascript:history.go(-1);">
 {% if current_user == bag.user_id %}
 <ul class="discs">
     {% for disc in discs %}

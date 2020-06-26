@@ -32,7 +32,9 @@
             <label for="park">Park played: </label>
             <select required id="park" name="park_id">
                 {% for park in all_parks %}
+                {% if park.user_id == request.user.id %}
                     <option {% if game.title == park.title %}selected{% endif %} value="{{ park.park_id }}">{{ park.title }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
         </fieldset>

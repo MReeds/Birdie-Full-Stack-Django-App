@@ -2,6 +2,7 @@
 
 {% block page_header %}
     <div class="text-left">
+        {% if user.is_authenticated %}
         {% if request.user.first_name %}
         <h2>Welcome to Birdie, {{request.user.first_name}}!</h2>
         {% else %}
@@ -12,4 +13,10 @@
         <h4>- Save game details.</h4>
         <h4>- Brag about your scores.</h4>
     </div>
+    {% else %}
+    <div class="text-center">
+        <h2>Welcome to Birdie!</h2>
+        <h4>Register or login to get started.</h4>
+    </div>
+    {% endif %}
 {% endblock page_header %}

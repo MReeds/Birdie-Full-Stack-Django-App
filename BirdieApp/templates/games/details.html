@@ -12,17 +12,18 @@
 
     <form action="{% url 'BirdieApp:game_edit_form' game.game_id %}" method="GET">
         {% csrf_token %}
+        <input type="hidden" name="actual_method" value="PUT">
         {% buttons %}
     <button class="btn btn-primary">Edit</button>
     {% endbuttons %}
+</form>
+    
     <form action="{% url 'BirdieApp:game' game.game_id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="actual_method" value="DELETE">
         {% buttons %}
     <button class="btn btn-primary">Delete</button>
     {% endbuttons %}
-    </form>
-
     </form>
     {% endif %}
 {% endblock %}

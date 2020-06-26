@@ -14,6 +14,7 @@ def get_park(park_id):
         db_cursor.execute("""
         SELECT
             p.id AS park_id,
+            p.user_id,
             p.title,
             p.city,
             p.state
@@ -27,9 +28,11 @@ def get_park(park_id):
 def park_details(request, park_id):
     if request.method == 'GET':
         park = get_park(park_id)
+        current_user = request.user.id
         
         template = 'parks/details.html'
         context = {
+            'current_user': current_user,
             'park': park
         }
         

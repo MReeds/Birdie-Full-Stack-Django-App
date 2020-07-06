@@ -12,6 +12,10 @@ park specifics, create a bag to take and save their scores. Birdie also features
 1. Install dependencies:
    `pip install -r requirements.txt`
    `pip install django-bootstrap4`
+1. Open Birdie in your IDE
+   1. Click into `BirdieApp` folder
+   1. Click into `views` folder and then open `connection.py`
+   1. Replace file path with your local file path to the database
 1. Create a Superuser:
    `python manage.py createsuperuser`
 1. Run migrations:

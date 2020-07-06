@@ -3,6 +3,7 @@ Birdie is a disc golf companion app that enables the user to save their disc rat
 park specifics, create a bag to take and save their scores. Birdie also features an integrated user messaging system
 
 ## Installation
+1. If you need Python on your machine, visit https://www.python.org/
 1. Clone down the repo and `cd` into it
 1. Set up your virtual environment:
    `python -m venv birdieappEnv`
@@ -16,8 +17,6 @@ park specifics, create a bag to take and save their scores. Birdie also features
 1. Run migrations:
    `python manage.py makemigrations BirdieApp`
    `python manage.py migrate`
-1. Add to INSTALLED_APPS in your settings.py:
-    `INSTALLED_APPS = ( "...", "bootstrap4", )`
 1. Start the Server:
    `python manage.py runserver`
 

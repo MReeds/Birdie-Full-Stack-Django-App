@@ -9,7 +9,7 @@
         {% csrf_token %}
         <fieldset>
             <label for="brand">Brand: </label>
-            <input id="brand" type="text" name="brand" value="{{ bag.brand }}">
+            <input required id="brand" type="text" name="brand" value="{{ bag.brand }}">
         </fieldset>
         {% buttons %}
     <button class="btn btn-primary">Save</button>

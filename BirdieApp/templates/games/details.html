@@ -5,9 +5,9 @@
 <input type=button value="Back" onClick="javascript:history.go(-1);">
 {% if current_user == game.user_id %}
     <section id="game-details">
-        <h3>Played on {{ game.started_at }} was played at {{ game.title }} 
-            and had a final score of {{game.score}}. 
-        </h3>
+        <h3>Bag: {{game.brand}}</h3>
+        <h3>Played at {{game.title}} on {{ game.started_at }}</h3>
+        <h3>Final score of {{game.score}}</h3>
     </section>
 
     <form action="{% url 'BirdieApp:game_edit_form' game.game_id %}" method="GET">

@@ -19,6 +19,13 @@
         {% endif %}
     {% endfor %}
     </ul>
+    <form action="{% url 'BirdieApp:bag' bag.bag_id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        {% buttons %}
+    <button class="btn btn-primary">Delete</button>
+    {% endbuttons %}
+    </form>
 <form action="{% url 'BirdieApp:discs'%}" method="GET">
     {% csrf_token %}
     {% buttons %}

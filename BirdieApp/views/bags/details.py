@@ -39,6 +39,7 @@ def get_bag(bag_id):
         
         return db_cursor.fetchone()
 
+
 @login_required
 def bag_details(request, bag_id):
     if request.method == 'GET':
@@ -54,3 +55,20 @@ def bag_details(request, bag_id):
         }
         
         return render(request, template, context)
+    
+    if request.method == 'POST':
+        form_data = request.POST
+
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "DELETE"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
+
+                db_cursor.execute("""
+                DELETE FROM BirdieApp_bag
+                WHERE id = ?
+                """, (bag_id,))
+
+            return redirect(reverse('BirdieApp:bags'))

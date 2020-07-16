@@ -7,20 +7,23 @@
 <ul class="discs">
     {% for disc in all_discs %}
     {% if disc.user_id == request.user.id %}
+        <form action="{% url 'BirdieApp:disc' disc.id %}" method="post">
+        <input type="hidden" name="actual_method" value="PUT">
+        {% csrf_token %}
         <li class="disc">
-            <div style="padding: 10px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            <div style="border: 3px;">
+            <button type="submit"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                 Add
             </button>
             <a class="disc_name" href="{% url 'BirdieApp:disc' disc.id %}">{{ disc.name }}</a>
-            {{ disc.brand }} - {{ disc.disc_type }}
+            {{ disc.brand }} - {{ disc.disc_type }} - {{disc.id}}
             </div>
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">{{disc.name}} has been added to your bag!</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">{{ disc.name }} has been added to your bag!</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -32,6 +35,7 @@
     </div>
   </div>
         </li>
+        </form>
         {% endif %}
     {% endfor %}
     </ul>

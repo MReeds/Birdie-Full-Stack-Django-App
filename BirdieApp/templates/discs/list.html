@@ -4,6 +4,8 @@
 {% block content %}
 <h1>Your discs</h1>
 
+<!-- Trying to add a form and submit to the add button so clicking it adds that disc to the bag you selected -->
+
 <ul class="discs">
     {% for disc in all_discs %}
     {% if disc.user_id == request.user.id %}

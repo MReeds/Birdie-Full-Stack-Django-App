@@ -7,19 +7,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def bag_list(request):
     if request.method == 'GET':
-        with sqlite3.connect(Connection.db_path) as conn:
-            conn.row_factory = model_factory(Bag)
-            db_cursor = conn.cursor()
-            
-            db_cursor.execute("""
-                SELECT
-                    b.id,
-                    b.user_id,
-                    b.brand
-                FROM BirdieApp_bag b
-                """)
-            
-            all_bags = db_cursor.fetchall()
+        all_bags = Bag.objects.all()
         
         template = 'bags/list.html'
         context = {
@@ -30,17 +18,10 @@ def bag_list(request):
     
     elif request.method == 'POST':
         form_data = request.POST
-        user_id = request.user.id
         
-        with sqlite3.connect(Connection.db_path) as conn:
-            db_cursor = conn.cursor()
-            
-            db_cursor.execute("""
-            INSERT INTO BirdieApp_bag
-                (user_id, brand)
-            VALUES
-                (?, ?)
-            """,
-            (user_id, form_data['brand'],))
+        new_bag = Bag.objects.create(
+            brand = form_data['brand'],
+            user_id = request.user.id
+        )
             
         return redirect(reverse('BirdieApp:bags'))
